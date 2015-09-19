@@ -1,0 +1,15 @@
+Luis Enrique Zamudio Cervantes
+No. cuenta 307293136
+luis.zamudio90@gmail.com
+
+Programa creado en Java 1.8.0 y Netbeans
+
+Dependencias: 
+	Para generar gráficas JFreeChart http://www.jfree.org/jfreechart/samples.html 
+	está biblioteca se encuentra dentro de la carpeta lib, si se abre el proyecto con Netbeans no se requiere incluirlas al compilar
+
+
+El programa puede compilarse y ejecutarse como proyecto en Netbeans y corriendo la clase pruebas 
+En Netbeans File > Open Project > (carpeta programa) 
+
+
