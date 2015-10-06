@@ -23,7 +23,7 @@ public class AlgoritmoGenetico {
     private Individuo[] poblacionNueva;
     private final double probMutacion = 0.01;
     private final double probCruza = 0.9;
-//    private final 
+    private static int contadorFile = 1;
 
     public AlgoritmoGenetico() {
 
@@ -106,6 +106,7 @@ public class AlgoritmoGenetico {
         }
         
         escribeArchivo(nueva,  System.getProperty("user.dir") + "/genes.txt", false);
+        escribeArchivo(nueva,  System.getProperty("user.dir") + "/generaciones/generacion_"+(contadorFile++)+".txt", false);
         
         
     }

@@ -28,7 +28,7 @@ public class GeneraBatalla {
         engine.addBattleListener(new Registros());
         engine.setVisible(false);
 
-        for (int e  = 0; e < 10000; e++) {
+        for (int e  = 0; e < 90000; e++) {
             
             int numberOfRounds = 1;
             BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); 
@@ -73,8 +73,6 @@ class Registros extends BattleAdaptor {
     public void onBattleCompleted(BattleCompletedEvent e) {
         System.out.println("-- Battle has completed --");
 
-        System.out.println("Battle results:");
-
         for (robocode.BattleResults result : e.getSortedResults()) {
             buscaRobot(result.getTeamLeaderName(), result.getScore());
         }
@@ -83,7 +81,7 @@ class Registros extends BattleAdaptor {
     }
 
     public void onBattleMessage(BattleMessageEvent e) {
-        System.out.println("Msg > " + e.getMessage());
+//        System.out.println("Msg > " + e.getMessage());
     }
 
     public void onBattleError(BattleErrorEvent e) {
