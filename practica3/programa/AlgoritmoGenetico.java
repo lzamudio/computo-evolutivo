@@ -23,13 +23,60 @@ public class AlgoritmoGenetico {
     private Individuo[] poblacionNueva;
     private final double probMutacion = 0.01;
     private final double probCruza = 0.9;
-    private static int contadorFile = 2831;
+    public static int contadorFile ;
 
     public AlgoritmoGenetico() {
 
         this.numPoblacion = 100;
         poblacion = new Individuo[this.numPoblacion];
         poblacionNueva = new Individuo[this.numPoblacion];
+
+        File dir = new File("generaciones");
+        File[] files = dir.listFiles();
+        int generacionActual = 0;
+        for(int i =0 ; i < files.length; i++){
+            String[] tmp = files[i].toString().split("_");
+
+            if(tmp.length == 2){
+                try{
+                    int t = Integer.parseInt(tmp[1].replace(".txt", ""));
+                    if(generacionActual < t){
+                        generacionActual = t;
+                    }
+                }catch(java.lang.NumberFormatException e){}
+            }
+            
+        }
+
+        this.contadorFile = generacionActual;
+
+        BufferedReader reader = null;
+        try {
+
+            reader = new BufferedReader(new FileReader(new File(System.getProperty("user.dir") + "/generaciones/generacion_"+(this.contadorFile-1)+".txt")));
+
+            String line = "";
+            String generacion = "";
+            while ((line = reader.readLine()) != null) {
+                generacion += line+"\n";
+            }
+
+            escribeArchivo(generacion,  System.getProperty("user.dir") + "/genes.txt", false);
+            escribeArchivo("",  System.getProperty("user.dir") + "/generacion.txt", false);
+            escribeArchivo("",  System.getProperty("user.dir") + "/resultados.txt", false);
+
+        } catch (IOException ex) {
+            Logger.getLogger(AlgoritmoGenetico.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(AlgoritmoGenetico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
         
     }
 

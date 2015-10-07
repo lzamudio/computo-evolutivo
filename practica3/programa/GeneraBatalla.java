@@ -13,6 +13,7 @@ import robocode.control.events.*;
 public class GeneraBatalla {
 
     public static void main(String[] args) {
+
         AlgoritmoGenetico ag = new AlgoritmoGenetico();
         //ag.poblacionInicial();
         
@@ -22,7 +23,7 @@ public class GeneraBatalla {
         engine.setVisible(false);
 
         for (int e  = 0; e < 90000; e++) {
-            System.out.println("Generación: "+e);
+            System.out.println("Generación: "+ ag.contadorFile);
             int numberOfRounds = 1;
             BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); 
             Random rd = new Random();
@@ -73,7 +74,7 @@ class Registros extends BattleAdaptor {
     }
 
     public void onBattleMessage(BattleMessageEvent e) {
-//        System.out.println("Msg > " + e.getMessage());
+        System.out.println("Msg > " + e.getMessage());
     }
 
     public void onBattleError(BattleErrorEvent e) {
