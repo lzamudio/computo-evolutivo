@@ -1,0 +1,19 @@
+Luis Enrique Zamudio Cervantes
+No. cuenta 307293136
+luis.zamudio90@gmail.com
+
+Programa escrito en Sublime Text 2
+
+Mi robot se ubica en la carpeta robots > ag > Frankenstein.java
+
+El programa guarda los datos de cada generación en la carpeta "generaciones", hasta ahora va en la generación 2830,
+si se ejecuta el programa iniciara desde esta generación
+
+
+El programa puede compilarse y ejecutarse desde el archivo "run.sh"
+
+En consola ejecutar ./run.sh
+
+
+
+
