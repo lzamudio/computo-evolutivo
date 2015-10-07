@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class AlgoritmoGenetico {
 
-    private int cantidadAcciones = 16;
+    private int cantidadAcciones = 20;
     private final int numPoblacion;
     private Individuo[] poblacion;
     private Individuo[] poblacionNueva;
@@ -49,34 +49,39 @@ public class AlgoritmoGenetico {
         }
 
         this.contadorFile = generacionActual;
+        if(this.contadorFile == 0){
+            poblacionInicial();
+        }else{
+            BufferedReader reader = null;
+            try {
 
-        BufferedReader reader = null;
-        try {
+                reader = new BufferedReader(new FileReader(new File(System.getProperty("user.dir") + "/generaciones/generacion_"+(this.contadorFile-1)+".txt")));
 
-            reader = new BufferedReader(new FileReader(new File(System.getProperty("user.dir") + "/generaciones/generacion_"+(this.contadorFile-1)+".txt")));
-
-            String line = "";
-            String generacion = "";
-            while ((line = reader.readLine()) != null) {
-                generacion += line+"\n";
-            }
-
-            escribeArchivo(generacion,  System.getProperty("user.dir") + "/genes.txt", false);
-            escribeArchivo("",  System.getProperty("user.dir") + "/generacion.txt", false);
-            escribeArchivo("",  System.getProperty("user.dir") + "/resultados.txt", false);
-
-        } catch (IOException ex) {
-            Logger.getLogger(AlgoritmoGenetico.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(AlgoritmoGenetico.class.getName()).log(Level.SEVERE, null, ex);
+                String line = "";
+                String generacion = "";
+                while ((line = reader.readLine()) != null) {
+                    generacion += line+"\n";
                 }
-            }
 
+                escribeArchivo(generacion,  System.getProperty("user.dir") + "/genes.txt", false);
+                
+
+            } catch (IOException ex) {
+                Logger.getLogger(AlgoritmoGenetico.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(AlgoritmoGenetico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            }
         }
+
+        escribeArchivo("",  System.getProperty("user.dir") + "/generacion.txt", false);
+        escribeArchivo("",  System.getProperty("user.dir") + "/resultados.txt", false);
         
     }
 
@@ -216,22 +221,42 @@ public class AlgoritmoGenetico {
                         case 4:
                         case 5:
                             genes[i] = opcion;
-                            genes[i + cantidadAcciones] = rd.nextInt(361);
+                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(361);
                             break;
                         case 6:
                         case 7:
                             genes[i] = opcion;
-                            genes[i + cantidadAcciones] = rd.nextInt(801);
+                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(801);
                             break;
                         case 8:
                             genes[i] = opcion;
-                            genes[i + cantidadAcciones] = rd.nextInt(4);
+                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(4);
                             break;
                         case 9:
                             genes[i] = opcion;
                             genes[i + cantidadAcciones] = -1;
                             break;
                     }
+                    /*
+                    int opcion = rd.nextInt(6);
+
+                    switch (opcion) {
+                        case 0:
+                        case 1:
+                            genes[i] = opcion;
+                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(801);
+                            break;
+                        case 2:
+                        case 3:
+                            genes[i] = opcion;
+                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(361);
+                            break;
+                        case 4:
+                            genes[i] = opcion;
+                            genes[i + cantidadAcciones] = rd.nextInt(4);
+                            break;
+                    }
+                    */
                 }
                 String gen = "";
                 for (int i = 0; i < genes.length; i++) {

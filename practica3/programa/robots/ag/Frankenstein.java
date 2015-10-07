@@ -15,47 +15,52 @@ import robocode.HitByBulletEvent;
 import robocode.HitWallEvent;
 import robocode.ScannedRobotEvent;
 import robocode.WinEvent;
+import java.util.UUID;
 
 public class Frankenstein extends Robot {
 
-    private int[] acciones;
-    private int cantidadAcciones = 16;
+    private static int[] acciones;
+    private int cantidadAcciones = 20;
+    private static boolean inicializado = false;
 
-    public Frankenstein() {
 
+    private void init(){
         acciones = new int[cantidadAcciones * 2];
         String line = getAndRemoveFirstLine();
-//        String line = 9|1|5|5|8|4|0|9|5|9|9|9|6|3|7|1|-1|10|218|73|3|63|12|-1|63|-1|-1|-1|754|283|74|195;
         StringTokenizer tokens = new StringTokenizer(line, "|");
         int e = 0;
         while (tokens.hasMoreTokens() && e < acciones.length) {
             acciones[e++] = Integer.parseInt(tokens.nextToken());
         }
+        inicializado = true;
     }
 
     public void run() {
+        if (!inicializado){
+            init();
+        }
         
         while (true) {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < (cantidadAcciones/4)*1; i++) {
                 ejecutaAccion(acciones[i], acciones[i + cantidadAcciones]);
             }
         }
     }
 
     public void onScannedRobot(ScannedRobotEvent e) {
-        for (int i = 4; i < 8; i++) {
+        for (int i = (cantidadAcciones/4)*1; i < (cantidadAcciones/4)*2; i++) {
             ejecutaAccion(acciones[i], acciones[i + cantidadAcciones]);
         }
     }
 
     public void onHitByBullet(HitByBulletEvent e) {
-        for (int i = 8; i < 12; i++) {
+        for (int i = (cantidadAcciones/4)*2; i < (cantidadAcciones/4)*3; i++) {
             ejecutaAccion(acciones[i], acciones[i + cantidadAcciones]);
         }
     }
 
     public void onHitWall(HitWallEvent e) {
-        for (int i = 12; i < 16; i++) {
+        for (int i = (cantidadAcciones/4)*3; i < (cantidadAcciones/4)*4; i++) {
             ejecutaAccion(acciones[i], acciones[i + cantidadAcciones]);
         }
     }
@@ -69,12 +74,15 @@ public class Frankenstein extends Robot {
     }
     
     private void escribeResultados(){
-        String tmp = "";
-        for (int a : acciones) {
-            tmp += a+"|";
+
+        if((getNumRounds() - 1) == getRoundNum()){
+            String tmp = "";
+            for (int a : acciones) {
+                tmp += a+"|";
+            }
+            tmp += this.getName()+"\n";
+            escribeArchivo(tmp, System.getProperty("user.dir") + "/resultados.txt", true);
         }
-        tmp += this.getName()+"\n";
-        escribeArchivo(tmp, System.getProperty("user.dir") + "/resultados.txt", true);
     }
     
     private void ejecutaAccion(int accion, int parametro) {
@@ -109,6 +117,21 @@ public class Frankenstein extends Robot {
             case 9:
                 doNothing();
                 break;
+            /*case 0:
+                ahead(parametro);
+                break;
+            case 1:
+                back(parametro);
+                break;
+            case 2:
+                turnLeft(parametro);
+                break;
+            case 3:
+                turnRight(parametro);
+                break;
+            case 4:
+                fire(parametro);
+                break;*/
         }
     }
     

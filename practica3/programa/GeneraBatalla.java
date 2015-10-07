@@ -15,16 +15,14 @@ public class GeneraBatalla {
     public static void main(String[] args) {
 
         AlgoritmoGenetico ag = new AlgoritmoGenetico();
-        //ag.poblacionInicial();
         
         RobocodeEngine.setLogMessagesEnabled(false);
         RobocodeEngine engine = new RobocodeEngine();
         engine.addBattleListener(new Registros());
         engine.setVisible(false);
 
-        for (int e  = 0; e < 90000; e++) {
-            System.out.println("Generación: "+ ag.contadorFile);
-            int numberOfRounds = 1;
+        for (int e  = 0; e < 1000; e++) {
+            System.out.println("Generacion: "+ ag.contadorFile);
             BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); 
             Random rd = new Random();
             String robots = "ag.Frankenstein*,ag.Frankenstein*,ag.Frankenstein*,ag.Frankenstein*";
@@ -47,7 +45,7 @@ public class GeneraBatalla {
             }
             for (int i = 1; i <= 25; i++) {
                 RobotSpecification[] selectedRobots = engine.getLocalRepository(robots);
-                BattleSpecification battleSpec = new BattleSpecification(numberOfRounds, battlefield, selectedRobots);
+                BattleSpecification battleSpec = new BattleSpecification(3, battlefield, selectedRobots);
                 engine.runBattle(battleSpec, true); 
             }
             ag.obtenPoblacion();
@@ -74,7 +72,7 @@ class Registros extends BattleAdaptor {
     }
 
     public void onBattleMessage(BattleMessageEvent e) {
-        System.out.println("Msg > " + e.getMessage());
+        //System.out.println("Msg > " + e.getMessage());
     }
 
     public void onBattleError(BattleErrorEvent e) {

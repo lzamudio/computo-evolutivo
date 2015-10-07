@@ -96,22 +96,42 @@ public class Individuo implements Comparable<Individuo> {
                     case 4:
                     case 5:
                         genes[i] = opcion;
-                        genes[i + cantidadAcciones] = rand.nextInt(361);
+                        genes[i + cantidadAcciones] = (rand.nextInt(2) == 0 ? -1 : 1) * rand.nextInt(361);
                         break;
                     case 6:
                     case 7:
                         genes[i] = opcion;
-                        genes[i + cantidadAcciones] = rand.nextInt(801);
+                        genes[i + cantidadAcciones] = (rand.nextInt(2) == 0 ? -1 : 1) * rand.nextInt(801);
                         break;
                     case 8:
                         genes[i] = opcion;
-                        genes[i + cantidadAcciones] = rand.nextInt(4);
+                        genes[i + cantidadAcciones] = (rand.nextInt(2) == 0 ? -1 : 1) * rand.nextInt(4);
                         break;
                     case 9:
                         genes[i] = opcion;
                         genes[i + cantidadAcciones] = -1;
                         break;
                 }
+                /*
+                int opcion = rand.nextInt(6);
+
+                switch (opcion) {
+                    case 0:
+                    case 1:
+                        genes[i] = opcion;
+                        genes[i + cantidadAcciones] = (rand.nextInt(2) == 0 ? -1 : 1) * rand.nextInt(801);
+                        break;
+                    case 2:
+                    case 3:
+                        genes[i] = opcion;
+                        genes[i + cantidadAcciones] = (rand.nextInt(2) == 0 ? -1 : 1) * rand.nextInt(361);
+                        break;
+                    case 4:
+                        genes[i] = opcion;
+                        genes[i + cantidadAcciones] = rand.nextInt(4);
+                        break;
+                }
+                */
             }
         }
     }
