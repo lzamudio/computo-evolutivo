@@ -18,17 +18,17 @@ import robocode.WinEvent;
 import java.util.UUID;
 import static robocode.util.Utils.normalRelativeAngleDegrees;
 
-public class Frankenstein extends Robot {
+public class Frank extends Robot {
 
     private static int[] acciones;
-    private int cantidadAcciones = 12;
+    private int cantidadAcciones = 16;
     private static boolean inicializado = false;
 
 
     private void init(){
         acciones = new int[cantidadAcciones * 2];
         //String line = getAndRemoveFirstLine();
-        String line = "1|1|8|0|9|8|8|9|8|6|7|8|7|193|2|0|-1|0|3|-1|3|386|224|2";
+        String line = "5|5|5|5|8|4|0|0|9|5|3|9|2|8|4|4|344|258|218|180|3|18|12|32|-1|350|86|-1|168|1|301|316";
         StringTokenizer tokens = new StringTokenizer(line, "|");
         int e = 0;
         while (tokens.hasMoreTokens() && e < acciones.length) {
@@ -198,13 +198,13 @@ public class Frankenstein extends Robot {
 
             return lineReturn;
         } catch (IOException ex) {
-            Logger.getLogger(Frankenstein.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frank.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(Frankenstein.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Frank.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             

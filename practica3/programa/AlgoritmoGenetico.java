@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class AlgoritmoGenetico {
 
-    private int cantidadAcciones = 20;
+    private int cantidadAcciones = 12;
     private final int numPoblacion;
     private Individuo[] poblacion;
     private Individuo[] poblacionNueva;
@@ -151,6 +152,9 @@ public class AlgoritmoGenetico {
                 }
             }
         }
+
+        Collections.shuffle(Arrays.asList(poblacion));
+        Collections.shuffle(Arrays.asList(poblacionNueva));
         
         String nueva = "";
         String nuevaTxt = "";
@@ -230,33 +234,14 @@ public class AlgoritmoGenetico {
                             break;
                         case 8:
                             genes[i] = opcion;
-                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(4);
+                            genes[i + cantidadAcciones] = rd.nextInt(4);
                             break;
                         case 9:
                             genes[i] = opcion;
                             genes[i + cantidadAcciones] = -1;
                             break;
+                           
                     }
-                    /*
-                    int opcion = rd.nextInt(6);
-
-                    switch (opcion) {
-                        case 0:
-                        case 1:
-                            genes[i] = opcion;
-                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(801);
-                            break;
-                        case 2:
-                        case 3:
-                            genes[i] = opcion;
-                            genes[i + cantidadAcciones] = (rd.nextInt(2) == 0 ? -1 : 1) * rd.nextInt(361);
-                            break;
-                        case 4:
-                            genes[i] = opcion;
-                            genes[i + cantidadAcciones] = rd.nextInt(4);
-                            break;
-                    }
-                    */
                 }
                 String gen = "";
                 for (int i = 0; i < genes.length; i++) {
