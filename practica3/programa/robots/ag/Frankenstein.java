@@ -27,8 +27,7 @@ public class Frankenstein extends Robot {
 
     private void init(){
         acciones = new int[cantidadAcciones * 2];
-        //String line = getAndRemoveFirstLine();
-        String line = "1|1|8|0|9|8|8|9|8|6|7|8|7|193|2|0|-1|0|3|-1|3|386|224|2";
+        String line = getAndRemoveFirstLine();
         StringTokenizer tokens = new StringTokenizer(line, "|");
         int e = 0;
         while (tokens.hasMoreTokens() && e < acciones.length) {
@@ -68,11 +67,11 @@ public class Frankenstein extends Robot {
     }
 
     public void onDeath(DeathEvent event) {
-        //escribeResultados();
+        escribeResultados();
     }
     
     public void onWin(WinEvent event){
-        //escribeResultados();
+        escribeResultados();
     }
 
 
@@ -139,13 +138,12 @@ public class Frankenstein extends Robot {
                 fire(parametro);
                 break;
             case 9:
-                trackFire();
+                doNothing();
                 break;
         }
     }
     
     private void escribeArchivo(String text, String file, boolean append){
-
         FileWriter fichero = null;
         PrintWriter pw;
         try {

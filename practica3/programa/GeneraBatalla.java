@@ -19,17 +19,9 @@ public class GeneraBatalla {
         RobocodeEngine.setLogMessagesEnabled(false);
         RobocodeEngine engine = new RobocodeEngine();
         engine.addBattleListener(new Registros());
-        engine.setVisible(true);
+        engine.setVisible(false);
 
-        BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); 
-        String robots = "ag.Individuo*,ag.Individuo*,ag.Frankenstein*,ag.Frankenstein*";
-        RobotSpecification[] selectedRobots = engine.getLocalRepository(robots);
-        BattleSpecification battleSpec = new BattleSpecification(3, battlefield, selectedRobots);
-        engine.runBattle(battleSpec, true); 
-        engine.close();
-        System.exit(0);
-
-        /*
+        
         for (int e  = 0; e < 2500; e++) {
             System.out.println("Generacion: "+ ag.contadorFile);
             BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); 
@@ -64,7 +56,7 @@ public class GeneraBatalla {
         
         engine.close();
         System.exit(0);
-        */
+        
     }
 }
 
